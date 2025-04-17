@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSI - Courses</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="toggle-container">
+        <button id="toggleBtn" class="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <h2>NSI</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                <li class="active"><a href="courses.html"><i class="fas fa-book"></i> <span>Courses</span></a></li>
+                <li><a href="announcements.html"><i class="fas fa-bullhorn"></i> <span>Announcements</span></a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> <span>About</span></a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="content">
+        <section class="section active">
+            <h1>Our Courses</h1>
+            <div class="course-grid">
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Web Development">
+                    <h3>Web Development</h3>
+                    <p>Duration: 12 weeks</p>
+                    <p>Learn HTML, CSS, JavaScript, and modern frameworks</p>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Data Science">
+                    <h3>Data Science</h3>
+                    <p>Duration: 16 weeks</p>
+                    <p>Master Python, Statistics, and Machine Learning</p>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+                <div class="course-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Mobile App Development">
+                    <h3>Mobile App Development</h3>
+                    <p>Duration: 14 weeks</p>
+                    <p>Build iOS and Android apps with React Native</p>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 

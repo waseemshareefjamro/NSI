@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSI - Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="toggle-container">
+        <button id="toggleBtn" class="toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <h2>NSI</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                <li><a href="courses.html"><i class="fas fa-book"></i> <span>Courses</span></a></li>
+                <li><a href="announcements.html"><i class="fas fa-bullhorn"></i> <span>Announcements</span></a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> <span>About</span></a></li>
+                <li class="active"><a href="contact.html"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="content">
+        <section class="section active">
+            <h1>Contact Us</h1>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p class="text-ellipsis">We're here to help! Reach out to us through any of these channels:</p>
+                    
+                    <div class="contact-details">
+                        <p><i class="fas fa-phone-alt"></i> <span>+92 308-3269962</span></p>
+                        <p><i class="fas fa-envelope"></i> <span>noman.shaikh.zn@gmail.com</span></p>
+                        <p><i class="fas fa-map-marker-alt"></i> <span>Gambat, Sindh, Pakistan</span></p>
+                        <p><i class="fas fa-clock"></i> <span>Available: 9:00 AM - 6:00 PM</span></p>
+                    </div>
+
+                    <div class="contact-social-links">
+                        <a href="https://youtube.com/@noman-shaikh?feature=shared" class="contact-social-btn">
+                            <i class="fab fa-youtube"></i> <span class="text-ellipsis">YouTube</span>
+                        </a>
+                        <a href="https://chat.whatsapp.com/EqGTyxaoAJtJxaeq7gOjlg" class="contact-social-btn">
+                            <i class="fab fa-whatsapp"></i> <span class="text-ellipsis">WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name" class="text-ellipsis">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email address" class="text-ellipsis">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" class="text-ellipsis">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="What is this regarding?" class="text-ellipsis">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required placeholder="Type your message here..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            Send Message
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 
