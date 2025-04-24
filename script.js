@@ -1,29 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebar');
-    const content = document.querySelector('.content');
     const toggleBtn = document.getElementById('toggleBtn');
-    const toggleContainer = document.querySelector('.toggle-container');
-    let isSidebarVisible = true;
+    const content = document.querySelector('.content');
+    let isSidebarOpen = false;
 
-    // Toggle sidebar
-    toggleBtn.addEventListener('click', () => {
-        isSidebarVisible = !isSidebarVisible;
-        if (isSidebarVisible) {
-            sidebar.style.transform = 'translateX(0)';
-            content.style.marginLeft = window.innerWidth <= 768 ? '70px' : 'var(--sidebar-width)';
-            toggleContainer.style.left = window.innerWidth <= 768 ? '1rem' : 'calc(var(--sidebar-width) - 3rem)';
+    // Create overlay element
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    document.body.appendChild(overlay);
+
+    // Function to close sidebar
+    function closeSidebar() {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('visible');
+            document.body.style.overflow = '';
+            isSidebarOpen = false;
+        }
+    }
+
+    // Function to toggle sidebar
+    function toggleSidebar() {
+        if (window.innerWidth > 768) {
+            // Desktop behavior
+            sidebar.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
         } else {
-            sidebar.style.transform = 'translateX(-100%)';
-            content.style.marginLeft = '0';
-            toggleContainer.style.left = '1rem';
+            // Mobile behavior
+            isSidebarOpen = !isSidebarOpen;
+            if (isSidebarOpen) {
+                sidebar.classList.add('open');
+                overlay.classList.add('visible');
+                document.body.style.overflow = 'hidden';
+            } else {
+                closeSidebar();
+            }
+        }
+    }
+
+    // Event Listeners
+    toggleBtn.addEventListener('click', toggleSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar when clicking navigation links
+    const navLinks = document.querySelectorAll('.sidebar nav ul li a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeSidebar);
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            closeSidebar();
+        } else {
+            sidebar.classList.remove('collapsed');
+            content.classList.remove('collapsed');
         }
     });
 
-    // Handle responsive behavior
-    window.addEventListener('resize', () => {
-        if (isSidebarVisible) {
-            content.style.marginLeft = window.innerWidth <= 768 ? '70px' : 'var(--sidebar-width)';
-            toggleContainer.style.left = window.innerWidth <= 768 ? '1rem' : 'calc(var(--sidebar-width) - 3rem)';
+    // Handle tab changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            closeSidebar();
         }
     });
 
@@ -33,26 +71,22 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Get form values
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
 
-            // Validate required fields
             if (!name || !email || !subject || !message) {
                 alert('Please fill in all required fields');
                 return;
             }
 
-            // Show loading state
             const submitBtn = contactForm.querySelector('.submit-btn');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
 
-            // Create form data
             const formData = new FormData();
             formData.append('name', name);
             formData.append('email', email);
@@ -60,15 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('subject', subject);
             formData.append('message', message);
 
-            // Send form data to PHP script
             fetch('send_email.php', {
                 method: 'POST',
                 body: formData
             })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (!response.ok) throw new Error('Network response was not ok');
                 return response.text();
             })
             .then(text => {
